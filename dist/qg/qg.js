@@ -4,6 +4,7 @@ import {mountTwitchAuth} from './twitch-auth.js';
 import {helpMarkup,mountHelp} from './aide.js?v=20261109-about1';
 import {contactMarkup,mountContact} from './contact.js?v=20261110-privacy1';
 import {privacyMarkup,mountPrivacy} from './confidentialite.js?v=20261113-profil-region1';
+import {legalMarkup,mountLegal} from './mentions-legales.js?v=20261114-mentions1';
 import {boutiqueMarkup,mountBoutique,unmountBoutique} from './boutique.js?v=20261111-clean-rewards1';
 import {monthlyRewardsMarkup} from './ranking-rewards.js?v=20261111-mission-art1';
 import {mountMonthlyMissions,unmountMonthlyMissions} from './monthly-missions.js?v=20261111-mission-art1';
@@ -15,7 +16,7 @@ const $ = (id) => document.getElementById(id);
 const root = $('page');
 const votesEnabled=document.querySelector('meta[name="majestik-votes-enabled"]')?.content==='true';
 const voteApi=(document.querySelector('meta[name="majestik-members-api"]')?.content||'').replace(/\/$/,'');
-const names = {accueil:'Accueil',roue:'La roue',defis:'Défis & missions',killathon:'Killathon',tribunal:'Tribunal communautaire',classement:'Classements','recompenses-mensuelles':'Récompenses mensuelles',boutique:'Boutique & Récompenses',setup:'Mon setup interactif',partenaires:'À propos du QG',apropos:'À propos du QG',createur:'Code créateur',profil:'Mon profil',membre:'Profil membre',aide:'Centre d’aide',contact:'Nous contacter',confidentialite:'Politique de confidentialité'};
+const names = {accueil:'Accueil',roue:'La roue',defis:'Défis & missions',killathon:'Killathon',tribunal:'Tribunal communautaire',classement:'Classements','recompenses-mensuelles':'Récompenses mensuelles',boutique:'Boutique & Récompenses',setup:'Mon setup interactif',partenaires:'À propos du QG',apropos:'À propos du QG',createur:'Code créateur',profil:'Mon profil',membre:'Profil membre',aide:'Centre d’aide',contact:'Nous contacter',confidentialite:'Politique de confidentialité','mentions-legales':'Mentions légales'};
 const modules = [
 {path:'roue',icon:'🎡',title:'La roue',desc:'Un outil interactif pour laisser le hasard choisir. De nouvelles utilisations pourront être ajoutées progressivement.',ready:true},
 {path:'defis',icon:'⚔️',title:'Défis & missions',desc:'Des défis à découvrir en solo ou en équipe. D’autres jeux pourront rejoindre le QG.',ready:true},
@@ -23,7 +24,7 @@ const modules = [
 {path:'tribunal',icon:'⚖️',title:'Tribunal communautaire',desc:'Propose des questions, vote avec Twitch et découvre les résultats partagés.',ready:tribunalPublicEnabled},
 {path:'classement',icon:'🏆',title:'Classements',desc:'Des tableaux partagés liés aux comptes et aux activités, sans faux résultats.',ready:votesEnabled}
 ];
-const groups = {accueil:null,roue:'outils',defis:'outils',killathon:'outils',tribunal:'outils',classement:'communaute','recompenses-mensuelles':'communaute',boutique:'communaute',setup:'univers',partenaires:'univers',apropos:'univers',createur:'univers',profil:null,membre:null,aide:null,contact:null,confidentialite:null};
+const groups = {accueil:null,roue:'outils',defis:'outils',killathon:'outils',tribunal:'outils',classement:'communaute','recompenses-mensuelles':'communaute',boutique:'communaute',setup:'univers',partenaires:'univers',apropos:'univers',createur:'univers',profil:null,membre:null,aide:null,contact:null,confidentialite:null,'mentions-legales':null};
 const tag=(s,kind='')=>'<span class="tag '+kind+'">'+s+'</span>';
 const head=(eyebrow,title,description,tags=[])=>'<div class="page-head"><div class="eyebrow">'+eyebrow+'</div><h1>'+title+'</h1>'+(description?'<p>'+description+'</p>':'')+(tags.length?'<div class="page-tags">'+tags.join('')+'</div>':'')+'</div>';
 const panel=(icon,title,body)=>'<article class="panel placeholder-card"><div><div class="big-symbol" aria-hidden="true">'+icon+'</div><h3>'+title+'</h3><p>'+body+'</p></div><div class="step-label">À DÉFINIR ENSEMBLE</div></article>';
@@ -304,7 +305,7 @@ function creator(){
   '</div>'+
  '</section>';
 }
-const pages={accueil:home,roue:wheel,defis:challenges,killathon:killathonMarkup,tribunal:tribunalPublicEnabled?publicTribunalMarkup:court,classement:ranking,'recompenses-mensuelles':monthlyRewardsMarkup,boutique:boutiqueMarkup,setup:setup,partenaires:about,apropos:about,createur:creator,profil:profileMarkup,membre:publicProfileMarkup,aide:helpMarkup,contact:contactMarkup,confidentialite:privacyMarkup};
+const pages={accueil:home,roue:wheel,defis:challenges,killathon:killathonMarkup,tribunal:tribunalPublicEnabled?publicTribunalMarkup:court,classement:ranking,'recompenses-mensuelles':monthlyRewardsMarkup,boutique:boutiqueMarkup,setup:setup,partenaires:about,apropos:about,createur:creator,profil:profileMarkup,membre:publicProfileMarkup,aide:helpMarkup,contact:contactMarkup,confidentialite:privacyMarkup,'mentions-legales':legalMarkup};
 let wheelObserver=null;
 let setupObserver=null;
 // Mesure la fin du contenu REEL (et non scrollHeight, qui peut inclure
@@ -397,6 +398,7 @@ function route(){
    if(page==='aide')mountHelp();
   if(page==='contact')mountContact();
   if(page==='confidentialite')mountPrivacy();
+   if(page==='mentions-legales')mountLegal();
   if(page==='membre')void mountPublicProfile();
  if(page==='defis')mountChallenges();
  if(page==='killathon')mountKillathon();

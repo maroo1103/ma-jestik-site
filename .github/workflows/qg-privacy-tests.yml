@@ -35,6 +35,8 @@ on:
       - 'dist/qg/contact.js'
       - 'dist/qg/confidentialite.js'
       - 'dist/qg/confidentialite.css'
+      - 'dist/qg/mentions-legales.js'
+      - 'dist/qg/mentions-legales.css'
       - 'backend/cloudflare/schema.sql'
       - 'backend/cloudflare/migrations/**'
       - 'scripts/deploy-warzone-assets.py'
@@ -83,6 +85,7 @@ jobs:
           node --check dist/image-storage.mjs
           node --check dist/qg/monthly-missions.js
           node --check dist/qg/confidentialite.js
+          node --check dist/qg/mentions-legales.js
           node --check dist/qg/contact.js
       - name: Tester en SQLite isolé (aucun accès à D1 de production)
         run: node --experimental-sqlite --test backend/cloudflare/tests/*.test.mjs

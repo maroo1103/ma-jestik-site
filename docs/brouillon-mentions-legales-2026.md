@@ -83,3 +83,13 @@ Pour signaler un problème de fonctionnement, un contenu ou une question relativ
 - Cloudflare Inc. (coordonnées officielles) : https://www.cloudflare.com/policies/terms/
 
 > Note : ce brouillon distingue les informations observables des conditions juridiques non vérifiées. Il ne constitue pas une certification de conformité.
+
+
+## Avancement du 14 novembre 2026 — page intégrée au QG
+
+- **Implémenté sur le site :** route `#/mentions-legales` (fichier `dist/qg/mentions-legales.js`, CSS dédié), liens cliquables dans les deux pieds de page (PC/mobile), informations publiques vérifiées : site personnel, contact, GitHub Inc. (Pages), Cloudflare Inc. (Workers/D1), liens vers confidentialité et signalement.
+- **Identité privée :** volontairement absente du dépôt GitHub public, aucune pièce d'identité, aucun domicile ni numéro personnel renseigné.
+- **Point juridiquement non résolu :** l'option d'anonymat public au titre de l'article 1-1 II LCEN suppose la transmission de l'identité au fournisseur d'hébergement ; GitHub Support ticket #4982347 reste en attente. La page indique honnêtement que la formalité n'est pas confirmée. **Ce travail ne permet pas de déclarer la conformité finale ni l'ouverture officielle.**
+- **Numéro de téléphone GitHub :** le numéro ancien trouvé dans un enregistrement SEC de 2015 n'est pas une confirmation contemporaine pour ce service ; le site ne l'affiche pas. Pour un non-professionnel remplissant la condition du II, seuls le nom et l'adresse de l'hébergeur doivent être rendus publics.
+- **Contrôles :** tester le rendu de la page, ses liens, sa navigation clavier/mobile, la confidentialité des données personnelles, et conserver l'attente de réponse GitHub. Si GitHub refuse toute procédure de transmission, demander un avis juridique avant d'affirmer l'anonymat légal ; examiner un hébergement adapté sans engager de coût supplémentaire sans validation.
+- **Références :** https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049568614/ ; https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement ; https://www.cloudflare.com/privacypolicy/ ; https://docs.github.com/fr/support/contacting-github-support/viewing-and-updating-support-tickets.
