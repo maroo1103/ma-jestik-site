@@ -21,7 +21,7 @@ jobs:
           npx playwright install chromium --with-deps
       - name: Vérifier les pages publiées depuis un navigateur neuf
         run: node scripts/audit-site-temp.cjs
-      - name: Tester menus, FAQ, jeux, contact sans envoi et APIs publiques
+      - name: Tester interactions visiteur, FAQ, jeux, contact et APIs publiques
         run: node scripts/audit-interactions-temp.cjs
       - name: Garder rapport et captures (aucun compte connecté)
         if: always()
