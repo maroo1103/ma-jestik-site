@@ -1,0 +1,6 @@
+# Ma_JesTik : site accessible en bêta, lancement officiel après validations.
+# Cette consigne limite l'exploration ; elle ne remplace ni une authentification
+# ni une protection des informations personnelles.
+User-agent: *
+Disallow: /
+Sitemap: https://ma-jestik.fr/sitemap.xml

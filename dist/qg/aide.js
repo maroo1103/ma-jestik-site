@@ -10,7 +10,7 @@ const faq=[
   {q:"Comment supprimer mon profil QG ?",a:'Depuis <a href="#/profil">Mon profil → Modifier mon profil</a>, utilise la zone de suppression tout en bas. Deux confirmations sont demandées. <strong>Attention :</strong> des données communautaires liées à ton compte, dont des points et des votes, peuvent être supprimées définitivement. Cela ne supprime pas ton compte Twitch.'}
  ]},
  {id:"gaming",title:"OUTILS GAMING",intro:"Roue, défis et Killathon communautaire.",items:[
-  {q:"À quoi sert la roue Fortnite ?",a:'La <a href="#/roue">roue Fortnite</a> choisit aléatoirement une destination parmi les lieux proposés dans l’outil. C’est une manière de varier les parties et de laisser le hasard décider.'},
+  {q:"À quoi sert la roue ?",a:'La <a href="#/roue">roue Ma_JesTik</a> effectue un tirage aléatoire parmi les choix d’une roue. Tu peux utiliser les modèles de jeux disponibles, créer ta propre roue, personnaliser ses choix et enregistrer une copie exportable depuis ton navigateur.'},
   {q:"Comment fonctionnent les défis et missions ?",a:'Dans <a href="#/defis">Défis & missions</a>, sélectionne les critères disponibles pour tirer une mission, puis consulte le défi en cours. Les pronostics de la communauté dépendent de l’ouverture d’une manche officielle.'},
   {q:"Qu’est-ce que le Killathon du site ?",a:'Le <a href="#/killathon">Killathon communautaire</a> est un compteur <strong>manuel</strong> lié à chaque compte Twitch. Un streamer peut fixer un objectif, mettre à jour son compteur et utiliser un lien d’affichage OBS. Il ne s’agit pas du Killathon personnel automatisé de Ma_JesTik sur son PC.'},
   {q:"Puis-je afficher mon Killathon sur OBS ?",a:'Oui. Lorsque ton Killathon du site est créé, un <strong>lien d’affichage OBS</strong> est proposé. Ajoute-le dans OBS comme source Navigateur pour afficher ton compteur. Aucun mot de passe Twitch ne doit être ajouté dans l’URL.'}
@@ -24,9 +24,9 @@ const faq=[
  ]},
  {id:"technique",title:"SITE & ASSISTANCE",intro:"Affichage, données et fonctionnement du QG.",items:[
   {q:"Le site est-il utilisable sur téléphone ?",a:'Oui. L’interface du QG est adaptée aux ordinateurs et aux mobiles. Si un affichage semble ancien, actualise le navigateur ; sur ordinateur, tu peux également utiliser <strong>Ctrl + F5</strong>.'},
-  {q:"Que faire si une fonctionnalité semble bloquée ?",a:'Commence par actualiser la page et vérifier ta connexion Twitch. Si une action nécessite Twitch, assure-toi d’être connecté. Certaines fonctionnalités communautaires sont encore en développement et peuvent être momentanément indisponibles.'},
+  {q:"Que faire si une fonctionnalité semble bloquée ?",a:'Actualise la page et vérifie ta connexion Twitch si la fonction en a besoin. Si le problème continue, contacte-nous depuis <a href="#/contact">Nous contacter</a> en précisant la page, ton appareil et le message d’erreur. N’envoie jamais de mot de passe ni de jeton Twitch.'},
   {q:"Quelles informations sont enregistrées dans mon profil ?",a:'Le QG utilise ton identifiant et ton avatar Twitch ainsi que les préférences que tu renseignes volontairement, comme ta présentation, tes jeux et tes liens. Les profils et points sont gérés par les services du site ; tu contrôles la visibilité publique et celle du classement.'},
-  {q:"Le site est-il affilié à Epic Games ou Twitch ?",a:'Ma_JesTik est un <strong>site communautaire indépendant</strong>. Les noms des jeux, plateformes et marques cités appartiennent à leurs titulaires. Le QG ne propose actuellement ni boutique ni liens d’affiliation. Découvre le projet dans <a href="#/apropos">À propos du QG</a>.'}
+  {q:"Le site est-il affilié à Epic Games ou Twitch ?",a:'Ma_JesTik est un <strong>site communautaire indépendant</strong>. Les marques et jeux cités appartiennent à leurs titulaires. La rubrique « Boutique &amp; récompenses » présente des récompenses communautaires sur Discord : ce n’est pas une boutique commerciale. Il n’y a actuellement pas de liens d’affiliation actifs. Découvre le projet dans <a href="#/apropos">À propos du QG</a>.'}
  ]}
 ];
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
@@ -51,7 +51,7 @@ export function helpMarkup(){
   '<div class="mj-help-categories">'+sections+'</div>'+
   '<p class="mj-help-noresult" id="mjHelpNoResult" role="status" hidden>Aucune réponse trouvée. Essaie avec un autre mot-clé.</p>'+
   '<aside class="mj-help-discord"><div><span class="mj-help-kicker">RESTONS CONNECTÉS</span><h2>REJOINS LA COMMUNAUTÉ</h2>'+
-  '<p>Retrouve le Discord Ma_JesTik pour discuter avec les membres. Une page de contact dédiée sera ajoutée ultérieurement.</p></div>'+
+  '<p>Retrouve les membres sur Discord ou écris-nous depuis la <a href="#/contact">page de contact</a> pour toute question sur le QG.</p></div>'+
   '<a href="https://discord.gg/nyuC5YE467" target="_blank" rel="noopener noreferrer">Rejoindre le Discord </a></aside>'+
  '</div>';
 }
