@@ -197,7 +197,7 @@ test("Footer : maquette fidèlement reprise avec arcs dorés et bandeau intégr�
  for(const path of ["#/accueil","#/roue","#/profil","#/setup","#/createur","#/defis","#/killathon","#/tribunal","#/classement","#/aide","#/apropos","#/contact","#/confidentialite"]){
   assert.ok(html.includes('href="'+path+'"'),"Lien de footer perdu : "+path);
  }
- assert.equal((html.match(/href="#\\/mentions-legales"/g)||[]).length,2);
+ assert.equal(html.split('href="#/mentions-legales"').length-1,2);
   assert.doesNotMatch(html,/Mentions légales · à compléter/);
  assert.match(html,/mj-footer-disclosure/);
  assert.match(css,/\.mj-footer-arc-bottom\{bottom:70px;right:-8px;transform:rotate\(180deg\)\}/);
