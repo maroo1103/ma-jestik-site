@@ -44,7 +44,7 @@ test('Le QG référence la nouvelle politique malgré le cache navigateur',()=>{
   const router=source('dist/qg/qg.js');
   const html=source('dist/qg/index.html');
   assert.match(router,/confidentialite\.js\?v=20261113-profil-region1/);
-  assert.match(html,/qg\.js\?v=20261114-mentions1/);
+  assert.match(html,/qg\.js\?v=20261114-checkup1/);
 });
 
 test('La purge des attestations de missions respecte le seuil de douze mois et ses garde-fous',()=>{

@@ -38,7 +38,7 @@ test('accessibilité des liens vers la page sur desktop et mobile',()=>{
  assert.equal((index.match(/href="#\/mentions-legales"/g)||[]).length,2);
  assert.equal((index.match(/Mentions légales · à compléter/g)||[]).length,0);
  assert.match(index,/mentions-legales\.css\?v=/);
- assert.match(index,/qg\.js\?v=20261114-mentions1/);
+ assert.match(index,/qg\.js\?v=20261114-checkup1/);
  const router=read('qg.js');
  assert.match(router,/\'mentions-legales\':legalMarkup/);
  assert.match(router,/if\(page===\'mentions-legales\'\)mountLegal\(\)/);
