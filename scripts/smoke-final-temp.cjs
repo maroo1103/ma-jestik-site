@@ -27,13 +27,13 @@ const assert=require('node:assert/strict');
  for(const pick of picks){
   const hotspot=page.locator('.hotspot[data-product-id="'+pick+'"]');
   assert.equal(await hotspot.count(),1,'Missing '+pick);
-  await hotspot.click({force:true,timeout:9000});
+  await hotspot.focus(); await page.keyboard.press('Enter');
   const dialog=page.locator('dialog.mj-product-dialog[open]');
   await dialog.waitFor({timeout:6000});
   const label=await dialog.locator('h2').textContent();
   const image=await dialog.locator('.mj-owned-photo').evaluate(img=>({src:img.src,complete:img.complete,width:img.naturalWidth,height:img.naturalHeight})).catch(()=>null);
   if(image){if(!image.complete)await dialog.locator('.mj-owned-photo').evaluate(img=>new Promise((ok,err)=>{if(img.complete){ok(null);return};img.addEventListener('load',()=>ok(null),{once:true});img.addEventListener('error',()=>err(Error('broken image')),{once:true})}));const width=await dialog.locator('.mj-owned-photo').evaluate(img=>img.naturalWidth);assert.ok(width>0,'Image de produit cassée '+pick)}
-  console.log('PRODUCT',pick,label?.trim().slice(0,65),JSON.stringify(image));
+  console.log('PRODUCT_OK',pick,label?.trim().slice(0,65),image?.src||'sans photo');
   await page.keyboard.press('Escape');
   assert.equal(await dialog.count(),0,'Dialog not closed '+pick);
  }
