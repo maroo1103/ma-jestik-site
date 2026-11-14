@@ -1,0 +1,10 @@
+/* Mentions légales : compléments au thème confidentalité existant */
+.mj-legal .mj-legal-providers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:14px 0 19px}
+.mj-legal .mj-legal-providers>div{background:linear-gradient(140deg,#26221f,#161619);border:1px solid #56432b;border-radius:12px;padding:18px 19px}
+.mj-legal .mj-legal-providers h3{font-size:13px;letter-spacing:.25px;margin:0 0 10px;color:#f0cb95}
+.mj-legal .mj-legal-providers p{margin:0;font-size:12px;line-height:1.85}
+.mj-legal .mj-legal-pending{border-left:3px solid #e3b477;padding:13px 15px;background:#2b261e;border-radius:0 8px 8px 0;color:#decdb5}
+.mj-legal .mj-legal-sources{padding-left:22px;line-height:2}
+.mj-legal .mj-legal-sources li{padding:3px 0}
+.mj-legal .mj-privacy-section h2:focus{outline:2px solid #e3b477;outline-offset:5px}
+@media(max-width:760px){.mj-legal .mj-legal-providers{grid-template-columns:1fr}}
