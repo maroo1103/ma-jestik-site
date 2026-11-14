@@ -170,6 +170,10 @@ jobs:
           print(f"Photo personnelle du PC redressée : {framed.size}, {destination.stat().st_size} octets")
           PY
 
+      - name: Optimiser les visuels du setup et exclure les archives inutilisées
+        shell: bash
+        run: python scripts/prepare-deployment.py dist
+
       - name: Configurer GitHub Pages
         uses: actions/configure-pages@v5
 
