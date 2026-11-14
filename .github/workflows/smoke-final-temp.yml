@@ -1,4 +1,4 @@
-name: Vérification finale (ponctuelle) du QG après correctifs
+name: Vérification finale (ponctuelle) du QG après correctifs — navigation clavier
 on:
   push:
     branches: [main]
