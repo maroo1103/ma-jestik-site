@@ -76,7 +76,7 @@ test('Profil V3 : la bannière gaming respecte les choix du membre sans données
  assert.match(css,/\.mp-profile-layout \.mp-count-1 \.mp-game-card/);
  assert.match(css,/\.mp-profile-layout \.mp-count-4/);
  assert.match(css,/@media\(max-width:680px\)/);
- assert.match(html,/profil\.css\?v=20261116-rgpd2/);
+ assert.match(html,/profil\.css\?v=20261113-profil-flags1/);
  assert.match(qg,/profil\.js\?v=20261116-rgpd2/);
  assert.doesNotMatch(profile,/Compte lié à Twitch :|mp-twitch-mark|Copier le lien public/);
  assert.match(profile,/statCard\("calendar","MEMBRE DEPUIS",joinedDate/);
