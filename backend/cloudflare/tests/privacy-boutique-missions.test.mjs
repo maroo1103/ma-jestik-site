@@ -10,7 +10,7 @@ const source=path=>readFileSync(resolve(root,path),'utf8');
 
 test('La politique détaille les missions, les remises et la boutique Discord',()=>{
   const privacy=source('dist/qg/confidentialite.js');
-  assert.match(privacy,/datetime="2026-11-12"/);
+  assert.match(privacy,/datetime="2026-11-16"/);
   assert.match(privacy,/Missions &amp; récompenses mensuelles/);
   assert.match(privacy,/Boutique &amp; récompenses Discord/);
   assert.match(privacy,/DraftBot/);
@@ -43,8 +43,8 @@ test('La vitrine Discord reste indépendante des paiements du QG',()=>{
 test('Le QG référence la nouvelle politique malgré le cache navigateur',()=>{
   const router=source('dist/qg/qg.js');
   const html=source('dist/qg/index.html');
-  assert.match(router,/confidentialite\.js\?v=20261113-profil-region1/);
-  assert.match(html,/qg\.js\?v=20261114-checkup1/);
+  assert.match(router,/confidentialite\.js\?v=20261116-ovh1/);
+  assert.match(html,/qg\.js\?v=20261116-ovh1/);
 });
 
 test('La purge des attestations de missions respecte le seuil de douze mois et ses garde-fous',()=>{
@@ -61,13 +61,13 @@ test('La purge des attestations de missions respecte le seuil de douze mois et s
 test('La simplification enlève uniquement les trois encadrés redondants',()=>{
   const privacy=source('dist/qg/confidentialite.js');
   assert.equal((privacy.match(/class="mj-privacy-detail"/g)||[]).length,1);
-  assert.match(privacy,/L'identité civile du responsable et ses coordonnées postales ne sont pas encore publiées/);
+  assert.match(privacy,/Le responsable du traitement est <strong>Mathieu Charbonneau<\/strong>/);
   assert.match(privacy,/Les pages publiques sont accessibles sans connexion/);
   assert.match(privacy,/Les champs obligatoires sont signalés/);
-  assert.match(privacy,/Les bases légales présentées comme envisagées restent à confirmer/);
+  assert.match(privacy,/Les bases légales envisagées sont décrites ci-dessous/);
   assert.match(privacy,/Les nettoyages automatiques concernés sont programmés chaque jour/);
   assert.match(privacy,/Les éventuels anciens sondages sans date de fin nécessitent une clôture manuelle/);
-  assert.match(privacy,/durées de conservation des données techniques, notamment des journaux et sauvegardes/);
+  assert.match(privacy,/durées de conservation des données techniques \(journaux et sauvegardes\)/);
   assert.doesNotMatch(privacy,/Les prochaines exécutions programmées devront être surveillées/);
   assert.doesNotMatch(privacy,/elles ne doivent pas être confondues avec une promesse/);
 });

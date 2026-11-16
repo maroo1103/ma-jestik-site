@@ -14,21 +14,25 @@ const html=vm.runInContext('legalMarkup()',context);
 
 test('page : noms hébergeurs confirmés, contenu informatif et coordonnées publiques',()=>{
  assert.match(html,/MENTIONS <em>LÉGALES/);
- assert.match(html,/GitHub, Inc\./);
- assert.match(html,/88 Colin P\. Kelly Jr\. Street/);
+ assert.match(html,/OVH SAS \(OVHcloud\)/);
+ assert.match(html,/2 rue Kellermann/);
+ assert.match(html,/59100 Roubaix/);
+ assert.match(html,/tel:1007/);
+ assert.doesNotMatch(html,/GitHub Pages — GitHub, Inc\./);
  assert.match(html,/Cloudflare, Inc\./);
  assert.match(html,/101 Townsend Street/);
  assert.match(html,/contact@ma-jestik\.fr/);
  assert.match(html,/\#\/confidentialite/);
  assert.match(html,/\#\/contact/);
- assert.match(html,/2026-11-14/);
+ assert.match(html,/2026-11-16/);
 });
 
-test('anonymat conditionnel explicitement présenté comme non vérifié',()=>{
- assert.match(html,/communication de son identité au fournisseur d'hébergement/);
- assert.match(html,/en cours de clarification/);
- assert.match(html,/toujours attendue/);
- assert.doesNotMatch(html,/formalité (?:est )?(?:accomplie|validée|confirmée)/i);
+test('coordonnées de l’éditeur communiquées à l’hébergeur, sans publication privée',()=>{
+ assert.match(html,/renseigné son identité et ses coordonnées auprès de son hébergeur OVHcloud/);
+ assert.match(html,/article 1-1, II/);
+ assert.match(html,/coordonnées personnelles ne sont pas publiées ici/);
+ assert.doesNotMatch(html,/GitHub Support|toujours attendue|en cours de clarification/);
+ assert.doesNotMatch(html,/Mathieu Charbonneau/);
  assert.doesNotMatch(html,/SIRET\s*:\s*\d+/);
  assert.doesNotMatch(html,/\+1\s*\(877\)/);
 });
@@ -38,7 +42,7 @@ test('accessibilité des liens vers la page sur desktop et mobile',()=>{
  assert.equal((index.match(/href="#\/mentions-legales"/g)||[]).length,2);
  assert.equal((index.match(/Mentions légales · à compléter/g)||[]).length,0);
  assert.match(index,/mentions-legales\.css\?v=/);
- assert.match(index,/qg\.js\?v=20261114-checkup1/);
+ assert.match(index,/qg\.js\?v=20261116-ovh1/);
  const router=read('qg.js');
  assert.match(router,/\'mentions-legales\':legalMarkup/);
  assert.match(router,/if\(page===\'mentions-legales\'\)mountLegal\(\)/);

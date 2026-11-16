@@ -19,11 +19,14 @@ test("confidentialité : information essentielle avant la collecte du formulaire
  assert.match(contact,/href="#\/confidentialite" target="_blank" rel="noopener noreferrer"/);
 });
 
-test("confidentialité : transparence sur les purges et les points légaux à finaliser",()=>{
+test("confidentialité : transparence sur les purges, le responsable et les prestataires",()=>{
  const page=read("confidentialite.js");
  assert.match(page,/Les nettoyages automatiques concernés sont programmés chaque jour/);
  assert.doesNotMatch(page,/mode simulation|aucune purge réelle n'est activée/);
- assert.match(page,/L'identité civile du responsable/);
+ assert.match(page,/Le responsable du traitement est <strong>Mathieu Charbonneau<\/strong>/);
+ assert.equal((page.match(/Mathieu Charbonneau/g)||[]).length,1);
+ assert.match(page,/OVHcloud \(OVH SAS\).*héberge les pages statiques/);
+ assert.doesNotMatch(page,/GitHub Pages<\/strong> publie les pages statiques/);
  assert.match(page,/contact@ma-jestik\.fr/);
  assert.match(page,/Cloudflare/);
  assert.match(page,/Resend/);
@@ -31,7 +34,7 @@ test("confidentialité : transparence sur les purges et les points légaux à fi
  assert.match(page,/Twitch/);
  assert.match(page,/CNIL/);
  assert.doesNotMatch(page,/\[À (COMPLÉTER|VÉRIFIER|VALIDER)\]/);
- assert.doesNotMatch(page,/Charbonneau|EM-494-AS|ZVD1FI6LRE0J/);
+ assert.doesNotMatch(page,/EM-494-AS|ZVD1FI6LRE0J/);
 });
 
 test("confidentialité : OAuth reconnaît la page",()=>{
