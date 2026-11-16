@@ -167,6 +167,11 @@ jobs:
         run: python scripts/prepare-deployment.py dist
 
 
+      - name: Configurer le type MIME JavaScript des modules sur OVH
+        shell: bash
+        run: |
+          printf '%s\n' 'AddType text/javascript .mjs' > dist/.htaccess
+
       - name: Vérifier la taille de la publication
         run: |
           python - <<'PY'
