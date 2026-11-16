@@ -172,6 +172,50 @@ jobs:
         run: |
           printf '%s\n' 'AddType text/javascript .mjs' > dist/.htaccess
 
+      - name: Adapter les modules JavaScript à l'hébergement OVH
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          root = Path("dist")
+          modules = sorted(root.rglob("*.mjs"))
+          if not modules:
+              raise SystemExit("Aucun module .mjs trouvé dans la publication.")
+          renames = {p.name: p.with_suffix(".js").name for p in modules}
+          for module in modules:
+              if module.with_suffix(".js").exists():
+                  raise SystemExit(f"Conflit de nom : {module.with_suffix('.js')}")
+
+          text_suffixes = {".js", ".mjs", ".html", ".css", ".json", ".webmanifest", ".svg", ".xml", ".txt", ".md"}
+          updated = 0
+          for path in root.rglob("*"):
+              if not path.is_file() or path.suffix.lower() not in text_suffixes:
+                  continue
+              original = path.read_bytes()
+              content = original
+              for before, after in renames.items():
+                  content = content.replace(before.encode("utf-8"), after.encode("utf-8"))
+              if content != original:
+                  path.write_bytes(content)
+                  updated += 1
+                  print(f"Références mises à jour : {path}")
+
+          for module in modules:
+              destination = module.with_suffix(".js")
+              module.rename(destination)
+              print(f"Module OVH : {module} -> {destination}")
+          if updated == 0:
+              raise SystemExit("Aucune référence de module convertie.")
+          if list(root.rglob("*.mjs")):
+              raise SystemExit("Modules .mjs encore présents dans la publication.")
+          print(f"{len(modules)} modules renommés, {updated} fichiers adaptés.")
+          PY
+          for module in dist/engine.js dist/image-storage.js dist/wheel-library.js dist/warzone-{hajin,rebirth,verdansk,zodiac}.js dist/qg/warzone-challenges.js; do
+            test -f "$module"
+            node --input-type=module --check < "$module"
+          done
+
       - name: Vérifier la taille de la publication
         run: |
           python - <<'PY'
