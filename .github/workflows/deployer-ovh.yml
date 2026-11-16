@@ -189,7 +189,7 @@ jobs:
           OVH_USER: majestx
         run: |
           python - <<'PY'
-          import os, stat, tempfile
+          import hashlib, os, stat, tempfile
           from pathlib import Path
           import paramiko
 
@@ -215,25 +215,66 @@ jobs:
                                  password=password, look_for_keys=False,
                                  allow_agent=False, timeout=20, auth_timeout=20)
                   with client.open_sftp() as sftp:
+                      sftp.get_channel().settimeout(60)
                       if not stat.S_ISDIR(sftp.stat(webroot).st_mode):
                           raise SystemExit("Le dossier www attendu n'existe pas.")
+                      print("Connexion SFTP et authentification réussies.", flush=True)
                       directories = set()
-                      for p in files:
+                      uploaded = skipped = 0
+
+                      def same_content(local, remote, size):
+                          try:
+                              attrs = sftp.lstat(remote)
+                          except FileNotFoundError:
+                              return False
+                          if not stat.S_ISREG(attrs.st_mode):
+                              raise OSError("La destination existe et n'est pas un fichier ordinaire.")
+                          if attrs.st_size != size:
+                              return False
+                          expected = hashlib.sha256(local.read_bytes()).digest()
+                          actual = hashlib.sha256()
+                          with sftp.open(remote, "rb") as data:
+                              if size:
+                                  data.prefetch(file_size=size, max_concurrent_requests=16)
+                              while chunk := data.read(128 * 1024):
+                                  actual.update(chunk)
+                          return actual.digest() == expected
+
+                      for index, p in enumerate(files, 1):
                           relative = p.relative_to(root).as_posix()
-                          parts = relative.split("/")
-                          for i in range(1, len(parts)):
-                              folder = webroot + "/" + "/".join(parts[:i])
-                              if folder in directories:
-                                  continue
-                              try:
-                                  attrs = sftp.stat(folder)
-                              except FileNotFoundError:
-                                  sftp.mkdir(folder)
-                                  attrs = sftp.stat(folder)
-                              if not stat.S_ISDIR(attrs.st_mode):
-                                  raise SystemExit("Conflit dans un dossier de destination.")
-                              directories.add(folder)
                           destination = webroot + "/" + relative
-                          sftp.put(str(p), destination, confirm=True)
-                      print(f"Transfert terminé : {len(files)} fichiers.")
+                          size = p.stat().st_size
+                          action = "préparation des dossiers"
+                          print(f"[{index}/{len(files)}] {destination} ({size} octets)", flush=True)
+                          try:
+                              parts = relative.split("/")
+                              for i in range(1, len(parts)):
+                                  folder = webroot + "/" + "/".join(parts[:i])
+                                  if folder in directories:
+                                      continue
+                                  try:
+                                      attrs = sftp.lstat(folder)
+                                  except FileNotFoundError:
+                                      sftp.mkdir(folder)
+                                      attrs = sftp.lstat(folder)
+                                  if not stat.S_ISDIR(attrs.st_mode):
+                                      raise OSError(f"Conflit dans le dossier {folder}.")
+                                  directories.add(folder)
+
+                              action = "comparaison du contenu"
+                              if same_content(p, destination, size):
+                                  skipped += 1
+                                  print("  Identique : conservé.", flush=True)
+                                  continue
+                              action = "écriture SFTP"
+                              sftp.put(str(p), destination, confirm=True)
+                              uploaded += 1
+                              print("  Envoyé.", flush=True)
+                          except (OSError, EOFError, paramiko.SSHException) as exc:
+                              raise SystemExit(
+                                  f"Échec ({action}) : {destination} ({size} octets). "
+                                  f"Déjà envoyés : {uploaded}, identiques : {skipped}. "
+                                  f"{type(exc).__name__}: {exc}"
+                              ) from exc
+                      print(f"Transfert terminé : {uploaded} envoyés, {skipped} identiques, {len(files)} vérifiés.", flush=True)
           PY
