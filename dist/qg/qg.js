@@ -3,8 +3,8 @@ import {mountActivityStrip,unmountActivityStrip} from './activity-strip.js?v=202
 import {mountTwitchAuth} from './twitch-auth.js';
 import {helpMarkup,mountHelp} from './aide.js?v=20261114-help-refresh1';
 import {contactMarkup,mountContact} from './contact.js?v=20261110-privacy1';
-import {privacyMarkup,mountPrivacy} from './confidentialite.js?v=20261113-profil-region1';
-import {legalMarkup,mountLegal} from './mentions-legales.js?v=20261114-mentions1';
+import {privacyMarkup,mountPrivacy} from './confidentialite.js?v=20261116-ovh1';
+import {legalMarkup,mountLegal} from './mentions-legales.js?v=20261116-ovh1';
 import {boutiqueMarkup,mountBoutique,unmountBoutique} from './boutique.js?v=20261111-clean-rewards1';
 import {monthlyRewardsMarkup} from './ranking-rewards.js?v=20261111-mission-art1';
 import {mountMonthlyMissions,unmountMonthlyMissions} from './monthly-missions.js?v=20261111-mission-art1';
