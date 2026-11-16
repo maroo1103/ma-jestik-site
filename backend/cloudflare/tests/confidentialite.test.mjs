@@ -41,3 +41,30 @@ test("confidentialité : OAuth reconnaît la page",()=>{
  const auth=read("twitch-auth.js");
  assert.match(auth,/routes=new Set\(\[[^\]]*'confidentialite'/);
 });
+
+
+test("confidentialité : localisation, conservation, choix de visibilité et polices locales",()=>{
+ const page=read("confidentialite.js"),profile=read("profil.js");
+ assert.match(page,/juridiction européenne/);
+ assert.match(page,/États-Unis/);
+ assert.match(page,/30 jours selon la documentation/);
+ assert.match(page,/Jusqu'à 7 jours/);
+ assert.match(page,/3 jours sur l'offre gratuite/);
+ assert.match(page,/consentement \(article 6, §1, a du RGPD\)/);
+ assert.match(page,/deux réglages distincts, décochés par défaut/);
+ assert.match(page,/IndexedDB/);
+ assert.match(profile,/Ces deux choix sont facultatifs/);
+ assert.match(profile,/href="#\/confidentialite" target="_blank" rel="noopener noreferrer"/);
+ for(const path of ["qg.css","killathon-overlay.css","../style.css"]){
+  const css=read(path);
+  assert.doesNotMatch(css,/fonts\.googleapis\.com/);
+  assert.match(css,/fonts\/fonts\.css/);
+ }
+ const fonts=read("../fonts/fonts.css");
+ assert.match(fonts,/Barlow Condensed/);
+ assert.match(fonts,/DM Sans/);
+ for(const [,file] of fonts.matchAll(/url\('([^']+\.ttf)'\)/g)){
+  const font=readFileSync(new URL("../../../dist/fonts/"+file,import.meta.url));
+  assert.ok(font.length>10000);
+ }
+});

@@ -3,12 +3,12 @@ import {mountActivityStrip,unmountActivityStrip} from './activity-strip.js?v=202
 import {mountTwitchAuth} from './twitch-auth.js';
 import {helpMarkup,mountHelp} from './aide.js?v=20261114-help-refresh1';
 import {contactMarkup,mountContact} from './contact.js?v=20261110-privacy1';
-import {privacyMarkup,mountPrivacy} from './confidentialite.js?v=20261116-ovh1';
+import {privacyMarkup,mountPrivacy} from './confidentialite.js?v=20261116-rgpd2';
 import {legalMarkup,mountLegal} from './mentions-legales.js?v=20261116-ovh1';
 import {boutiqueMarkup,mountBoutique,unmountBoutique} from './boutique.js?v=20261111-clean-rewards1';
 import {monthlyRewardsMarkup} from './ranking-rewards.js?v=20261111-mission-art1';
 import {mountMonthlyMissions,unmountMonthlyMissions} from './monthly-missions.js?v=20261111-mission-art1';
-import {profileMarkup,mountProfile,publicProfileMarkup,mountPublicProfile,renderPublicMember,renderPrivateMember} from './profil.js?v=20261113-profil-flags1';
+import {profileMarkup,mountProfile,publicProfileMarkup,mountPublicProfile,renderPublicMember,renderPrivateMember} from './profil.js?v=20261116-rgpd2';
 import {killathonMarkup,mountKillathon} from './killathon.js?v=20261108-auth-sync1';
 import {tribunalMarkup,mountTribunal,unmountTribunal} from './tribunal.js?v=20261108-copyrefresh1';
 import {publicTribunalMarkup,mountPublicTribunal,unmountPublicTribunal,tribunalPublicEnabled} from './tribunal-public.js?v=20261108-copyrefresh1';
@@ -109,7 +109,7 @@ function home(){
 }
 function wheel(){
  return head('OUTILS GAMING','LA ROUE','Un tirage, une décision ! Lance la roue et laisse le hasard choisir.')+
- '<div class="wheel-area"><div class="loading" id="wheelLoading">Chargement de la roue…</div><iframe class="wheel-embed" id="wheelFrame" title="La roue interactive Ma_JesTik" src="../roue.html?v=20261112-verdansk-labels1" loading="eager" allow="fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
+ '<div class="wheel-area"><div class="loading" id="wheelLoading">Chargement de la roue…</div><iframe class="wheel-embed" id="wheelFrame" title="La roue interactive Ma_JesTik" src="../roue.html?v=20261116-rgpd2" loading="eager" allow="fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
 }
 function challenges(){return challengesMarkup();}
 function court(){return tribunalMarkup();}
@@ -265,7 +265,7 @@ if(memberPreviewDialog){
 }
 function setup(){
  return head('UNIVERS MA_JESTIK','MON VRAI SETUP INTERACTIF','Explore mon installation gaming en détail. Sélectionne un équipement sur la photo pour découvrir ses caractéristiques et ma configuration PC.')+
- '<div class="wheel-area setup-area"><iframe class="setup-embed" id="setupFrame" src="setup-original/index.html?v=20261109-ergosolid1" title="Setup interactif original de Ma_JesTik avec photo et composants cliquables" loading="eager" scrolling="no"></iframe></div>';
+ '<div class="wheel-area setup-area"><iframe class="setup-embed" id="setupFrame" src="setup-original/index.html?v=20261116-rgpd2" title="Setup interactif original de Ma_JesTik avec photo et composants cliquables" loading="eager" scrolling="no"></iframe></div>';
 }
 
 function about(){

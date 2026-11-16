@@ -222,10 +222,11 @@ function view(state){
    '<label>TikTok (pseudo facultatif) <input name="tiktok" maxlength="24" value="'+esc(p.tiktok)+'" placeholder="mon_pseudo"></label>'+
    '<label class="mp-form-full">Discord (pseudo facultatif) <input name="discord" maxlength="40" value="'+esc(p.discord)+'" placeholder="mon_pseudo"></label></div>'+
    '<div class="mp-privacy-settings">'+
-    '<label class="mp-public-toggle"><input name="public_profile" type="checkbox"'+(p.public_profile?' checked':'')+'><span><strong>Rendre mon profil public</strong><small>Les autres visiteurs peuvent consulter ta présentation, tes jeux et tes liens.</small></span></label>'+
+    '<label class="mp-public-toggle"><input name="public_profile" type="checkbox"'+(p.public_profile?' checked':'')+'><span><strong>Rendre mon profil public</strong><small>Les visiteurs peuvent voir ton pseudo, ton avatar, ta présentation, tes jeux, ta région et tes liens renseignés.</small></span></label>'+
     (state.online&&state.rankingVisible!==null?
-      '<label class="mp-public-toggle mp-ranking-toggle"><input name="ranking_visible" type="checkbox"'+(state.rankingVisible?' checked':'')+'><span><strong>Afficher mon profil dans le classement</strong><small>Mon pseudo et mes points peuvent apparaître dans les classements du QG. Indépendant du profil public.</small></span></label>':
+      '<label class="mp-public-toggle mp-ranking-toggle"><input name="ranking_visible" type="checkbox"'+(state.rankingVisible?' checked':'')+'><span><strong>Afficher mon profil dans le classement</strong><small>Mon pseudo, mon avatar, mon identifiant Twitch et mes points peuvent apparaître dans les classements du QG. Indépendant du profil public.</small></span></label>':
       (state.online?'<p class="mp-ranking-warning" role="status">Réglage du classement indisponible. Recharge la page pour le modifier.</p>':''))+
+    '<p>Ces deux choix sont facultatifs. Tu peux les retirer à tout moment en décochant les cases et en enregistrant. <a href="#/confidentialite" target="_blank" rel="noopener noreferrer">Politique de confidentialité</a>.</p>'+
    '</div>'+
    '<div class="mp-save-row"><button class="mp-gold-button" type="submit">✓ '+(server?"Enregistrer mon profil":"Enregistrer l’aperçu sur cet appareil")+'</button>'+
     '<span id="mpSaveStatus" role="status"></span></div>'+

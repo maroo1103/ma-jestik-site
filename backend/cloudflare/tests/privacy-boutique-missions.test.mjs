@@ -43,8 +43,8 @@ test('La vitrine Discord reste indépendante des paiements du QG',()=>{
 test('Le QG référence la nouvelle politique malgré le cache navigateur',()=>{
   const router=source('dist/qg/qg.js');
   const html=source('dist/qg/index.html');
-  assert.match(router,/confidentialite\.js\?v=20261116-ovh1/);
-  assert.match(html,/qg\.js\?v=20261116-ovh1/);
+  assert.match(router,/confidentialite\.js\?v=20261116-rgpd2/);
+  assert.match(html,/qg\.js\?v=20261116-rgpd2/);
 });
 
 test('La purge des attestations de missions respecte le seuil de douze mois et ses garde-fous',()=>{
@@ -64,10 +64,10 @@ test('La simplification enlève uniquement les trois encadrés redondants',()=>{
   assert.match(privacy,/Le responsable du traitement est <strong>Mathieu Charbonneau<\/strong>/);
   assert.match(privacy,/Les pages publiques sont accessibles sans connexion/);
   assert.match(privacy,/Les champs obligatoires sont signalés/);
-  assert.match(privacy,/Les bases légales envisagées sont décrites ci-dessous/);
+  assert.match(privacy,/Les traitements sont limités aux finalités décrites ci-dessous/);
   assert.match(privacy,/Les nettoyages automatiques concernés sont programmés chaque jour/);
   assert.match(privacy,/Les éventuels anciens sondages sans date de fin nécessitent une clôture manuelle/);
-  assert.match(privacy,/durées de conservation des données techniques \(journaux et sauvegardes\)/);
+  assert.match(privacy,/durées de conservation des données techniques propres à OVHcloud/);
   assert.doesNotMatch(privacy,/Les prochaines exécutions programmées devront être surveillées/);
   assert.doesNotMatch(privacy,/elles ne doivent pas être confondues avec une promesse/);
 });
