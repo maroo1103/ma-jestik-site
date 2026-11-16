@@ -1,6 +1,12 @@
-name: Déployer le site Ma_JesTik sur OVH (test)
+name: Déployer le site Ma_JesTik sur OVH
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'dist/**'
+      - 'scripts/**'
+      - '.github/workflows/deployer-ovh.yml'
   workflow_dispatch:
 
 permissions:
