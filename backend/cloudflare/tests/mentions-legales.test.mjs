@@ -24,7 +24,7 @@ test('page : noms hébergeurs confirmés, contenu informatif et coordonnées pub
  assert.match(html,/contact@ma-jestik\.fr/);
  assert.match(html,/\#\/confidentialite/);
  assert.match(html,/\#\/contact/);
- assert.match(html,/2026-11-16/);
+ assert.match(html,/2026-11-17/);
 });
 
 test('coordonnées de l’éditeur communiquées à l’hébergeur, sans publication privée',()=>{
@@ -63,4 +63,12 @@ test('aucune donnée sensible et pas de modification d’autres modules',()=>{
  assert.doesNotMatch(html,/date de naissance|carte d'identité|token secret|webhook token/i);
  assert.ok(read('qg.js').includes("const pages={accueil:home"));
  assert.ok(read('index.html').includes('href="#/confidentialite"'));
+});
+
+test('mentions légales épurées sans perte des prestataires ni du sommaire',()=>{
+ assert.doesNotMatch(html,/mj-privacy-intro|Workers et D1|Resend/);
+ assert.doesNotMatch(html, /data-legal-jump="[^"]+">\d|mj-privacy-n">\d/);
+ assert.equal((html.match(/data-legal-jump=/g)||[]).length,7);
+ assert.equal((html.match(/<section /g)||[]).length,7);
+ assert.match(read('confidentialite.js'),/Resend/);
 });
