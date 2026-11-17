@@ -53,3 +53,14 @@
 .mj-privacy-bottom span{color:#e4b777;margin-right:8px}
 @media(max-width:900px){.mj-privacy-layout{grid-template-columns:minmax(0,1fr)}.mj-privacy-nav{position:static;display:flex;flex-direction:row;flex-wrap:wrap;gap:5px}.mj-privacy-nav>strong{width:100%;padding:0 9px 6px}.mj-privacy-nav button{flex:0 1 auto;font-size:10px}.mj-privacy-section{scroll-margin-top:86px}}
 @media(max-width:620px){.mj-privacy-hero{padding:29px 21px}.mj-privacy-hero h1{font-size:clamp(39px,11vw,54px)}.mj-privacy-hero:before{font-size:55px;right:3%;top:3%}.mj-privacy-hero>p{font-size:12px}.mj-privacy-intro{padding:16px;gap:10px}.mj-privacy-intro-symbol{font-size:24px}.mj-privacy-data-grid{grid-template-columns:1fr}.mj-privacy-section h2{font-size:27px}.mj-privacy-section p,.mj-privacy-section li{font-size:12px}.mj-privacy-nav{padding:12px}.mj-privacy-nav button{flex:1 1 135px;padding:8px;font-size:10px}.mj-privacy-contact .mj-privacy-contact-btn{white-space:normal;width:100%}.mj-privacy-bottom{line-height:1.75}}
+
+/* Confidentialité : même respiration et même lisibilité que les mentions légales. */
+.mj-privacy:not(.mj-legal) .mj-privacy-layout{margin-top:32px}
+.mj-privacy:not(.mj-legal) .mj-privacy-hero>p{font-size:15px}
+.mj-privacy:not(.mj-legal) .mj-privacy-nav>strong{font-size:12px}
+.mj-privacy:not(.mj-legal) .mj-privacy-nav button{font-size:13px}
+.mj-privacy:not(.mj-legal) .mj-privacy-section p,.mj-privacy:not(.mj-legal) .mj-privacy-section li{font-size:15px;line-height:1.8}
+.mj-privacy:not(.mj-legal) .mj-privacy-data-grid p{font-size:14px;line-height:1.8}
+.mj-privacy:not(.mj-legal) .mj-privacy-table td{font-size:14px}
+@media(max-width:900px){.mj-privacy:not(.mj-legal) .mj-privacy-layout{margin-top:24px}.mj-privacy:not(.mj-legal) .mj-privacy-nav button{font-size:12px}}
+@media(max-width:620px){.mj-privacy:not(.mj-legal) .mj-privacy-hero>p{font-size:14px}.mj-privacy:not(.mj-legal) .mj-privacy-section p,.mj-privacy:not(.mj-legal) .mj-privacy-section li{font-size:14px}.mj-privacy:not(.mj-legal) .mj-privacy-data-grid p,.mj-privacy:not(.mj-legal) .mj-privacy-table td{font-size:13px}}

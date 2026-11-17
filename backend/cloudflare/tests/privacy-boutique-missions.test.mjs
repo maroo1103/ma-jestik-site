@@ -10,7 +10,7 @@ const source=path=>readFileSync(resolve(root,path),'utf8');
 
 test('La politique détaille les missions, les remises et la boutique Discord',()=>{
   const privacy=source('dist/qg/confidentialite.js');
-  assert.match(privacy,/datetime="2026-11-16"/);
+  assert.match(privacy,/datetime="2026-11-17"/);
   assert.match(privacy,/Missions &amp; récompenses mensuelles/);
   assert.match(privacy,/Boutique &amp; récompenses Discord/);
   assert.match(privacy,/DraftBot/);
@@ -58,9 +58,9 @@ test('La purge des attestations de missions respecte le seuil de douze mois et s
   assert.match(worker,/await purgeTribunalRetention\(env\)/);
 });
 
-test('La simplification enlève uniquement les trois encadrés redondants',()=>{
+test('La simplification enlève les encadrés redondants et les numéros, sans perte d’informations',()=>{
   const privacy=source('dist/qg/confidentialite.js');
-  assert.equal((privacy.match(/class="mj-privacy-detail"/g)||[]).length,1);
+  assert.doesNotMatch(privacy,/class="mj-privacy-intro|class="mj-privacy-detail|data-privacy-jump="[^"]+">\d|class="mj-privacy-n">\d/);
   assert.match(privacy,/Le responsable du traitement est <strong>Mathieu Charbonneau<\/strong>/);
   assert.match(privacy,/Les pages publiques sont accessibles sans connexion/);
   assert.match(privacy,/Les champs obligatoires sont signalés/);

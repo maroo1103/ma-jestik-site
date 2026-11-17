@@ -1,4 +1,4 @@
-/* Politique de confidentialité — mise à jour du 16/11/2026.
+/* Politique de confidentialité — mise à jour du 17/11/2026.
    Identité du responsable publiée avec son accord ; aucune coordonnée privée ni secret. */
 export function privacyMarkup(){
  return `
@@ -7,38 +7,31 @@ export function privacyMarkup(){
    <div class="mj-privacy-eyebrow">AIDE &amp; INFORMATIONS <span aria-hidden="true">✦</span> DONNÉES PERSONNELLES</div>
    <h1 id="mjPrivacyTitle">TES DONNÉES.<br><em>EN TOUTE CLARTÉ.</em></h1>
    <p>Voici comment le QG Ma_JesTik utilise les informations nécessaires à la connexion Twitch, aux activités communautaires, aux missions et récompenses, et aux messages envoyés depuis le site.</p>
-   <div class="mj-privacy-hero-meta"><span>POLITIQUE DE CONFIDENTIALITÉ</span><span>Mise à jour : <time datetime="2026-11-16">16 novembre 2026</time></span></div>
+   <div class="mj-privacy-hero-meta"><span>POLITIQUE DE CONFIDENTIALITÉ</span><span>Mise à jour : <time datetime="2026-11-17">17 novembre 2026</time></span></div>
   </header>
-
-  <div class="mj-privacy-intro" role="note">
-   <span class="mj-privacy-intro-symbol" aria-hidden="true">◈</span>
-   <div><strong>Une information transparente</strong>
-   <p>Cette politique décrit les traitements liés aux fonctionnalités du QG et les moyens d'exercer tes droits. Depuis le 16 novembre 2026, les pages du site sont hébergées chez OVHcloud ; les services de connexion, de données et de messagerie décrits ci-dessous restent distincts.</p></div>
-  </div>
 
   <div class="mj-privacy-layout">
    <nav class="mj-privacy-nav" aria-label="Sommaire de la confidentialité">
-    <strong>AU PROGRAMME</strong>
-    <button type="button" data-privacy-jump="responsable">01 · Responsable &amp; contact</button>
-    <button type="button" data-privacy-jump="donnees">02 · Données utilisées</button>
-    <button type="button" data-privacy-jump="finalites">03 · Utilisation &amp; bases légales</button>
-    <button type="button" data-privacy-jump="destinataires">04 · Prestataires</button>
-    <button type="button" data-privacy-jump="durees">05 · Conservation</button>
-    <button type="button" data-privacy-jump="droits">06 · Tes droits</button>
-    <button type="button" data-privacy-jump="stockage">07 · Stockage &amp; sécurité</button>
+    <strong>AU SOMMAIRE</strong>
+    <button type="button" data-privacy-jump="responsable">Responsable &amp; contact</button>
+    <button type="button" data-privacy-jump="donnees">Données utilisées</button>
+    <button type="button" data-privacy-jump="finalites">Utilisation &amp; bases légales</button>
+    <button type="button" data-privacy-jump="destinataires">Prestataires</button>
+    <button type="button" data-privacy-jump="durees">Conservation</button>
+    <button type="button" data-privacy-jump="droits">Tes droits</button>
+    <button type="button" data-privacy-jump="stockage">Stockage &amp; sécurité</button>
    </nav>
 
    <div class="mj-privacy-sections">
     <section class="mj-privacy-section" id="mj-privacy-responsable" aria-labelledby="mj-privacy-responsable-title">
-     <span class="mj-privacy-n">01 / QUI GÈRE CES INFORMATIONS ?</span>
+     <span class="mj-privacy-n">QUI GÈRE CES INFORMATIONS ?</span>
      <h2 id="mj-privacy-responsable-title">RESPONSABLE &amp; CONTACT</h2>
      <p>Le responsable du traitement est <strong>Mathieu Charbonneau</strong>, éditeur à titre personnel du site <strong>Ma_JesTik</strong>, accessible à l'adresse <a href="https://ma-jestik.fr/">ma-jestik.fr</a>. Il détermine les finalités et les moyens des traitements décrits sur cette page.</p>
      <p>Tu peux poser une question, demander l'accès ou la suppression de tes données, ou signaler un problème à <a href="mailto:contact@ma-jestik.fr">contact@ma-jestik.fr</a>, ou utiliser le <a href="#/contact">formulaire de contact</a>.</p>
-     <p class="mj-privacy-detail">Le point de contact pour toute question de protection des données est l'adresse e-mail indiquée ci-dessus. Les informations relatives à l'hébergement figurent dans les <a href="#/mentions-legales">mentions légales</a>.</p>
     </section>
 
     <section class="mj-privacy-section" id="mj-privacy-donnees" aria-labelledby="mj-privacy-donnees-title">
-     <span class="mj-privacy-n">02 / QU'EST-CE QUI EST UTILISÉ ?</span>
+     <span class="mj-privacy-n">QU'EST-CE QUI EST UTILISÉ ?</span>
      <h2 id="mj-privacy-donnees-title">LES DONNÉES DU QG</h2>
      <div class="mj-privacy-data-grid">
       <div><h3>Connexion Twitch</h3><p>Identifiant Twitch, pseudo, nom de connexion, avatar et jeton d'accès nécessaire à la vérification d'identité. Le jeton reste dans le stockage de session du navigateur, et l'identité est contrôlée auprès de Twitch. Les pages publiques sont accessibles sans connexion ; certaines fonctions participatives nécessitent de se connecter.</p></div>
@@ -53,7 +46,7 @@ export function privacyMarkup(){
     </section>
 
     <section class="mj-privacy-section" id="mj-privacy-finalites" aria-labelledby="mj-privacy-finalites-title">
-     <span class="mj-privacy-n">03 / POURQUOI CES DONNÉES ?</span>
+     <span class="mj-privacy-n">POURQUOI CES DONNÉES ?</span>
      <h2 id="mj-privacy-finalites-title">UTILISATION &amp; BASES LÉGALES</h2>
      <p>Les traitements sont limités aux finalités décrites ci-dessous. Le QG ne vend pas tes données et les informations de profil facultatives ne sont pas nécessaires pour consulter les pages publiques.</p>
      <ul class="mj-privacy-points">
@@ -66,7 +59,7 @@ export function privacyMarkup(){
     </section>
 
     <section class="mj-privacy-section" id="mj-privacy-destinataires" aria-labelledby="mj-privacy-destinataires-title">
-     <span class="mj-privacy-n">04 / AVEC QUI ?</span>
+     <span class="mj-privacy-n">AVEC QUI ?</span>
      <h2 id="mj-privacy-destinataires-title">PRESTATAIRES &amp; DESTINATAIRES</h2>
      <p>Selon la fonctionnalité utilisée : <strong>Twitch</strong> vérifie la connexion ; <strong>Cloudflare</strong> fournit les Workers, la base D1 et la vérification anti-spam Turnstile ; <strong>OVHcloud (OVH SAS)</strong> héberge les pages statiques, gère le nom de domaine et la boîte de réception des messages de contact ; <strong>Resend</strong> achemine ces messages, y compris leurs éventuelles pièces jointes. <strong>GitHub</strong> est utilisé pour le code source et le déploiement automatisé vers OVHcloud, et non comme hébergeur principal de ma-jestik.fr.</p>
      <p>L'éditeur peut accéder aux données nécessaires à la gestion du site. Les autres visiteurs ne voient que les contenus destinés à être publics : notamment certains sondages, résultats, classements ou profils rendus visibles.</p>
@@ -76,7 +69,7 @@ export function privacyMarkup(){
     </section>
 
     <section class="mj-privacy-section" id="mj-privacy-durees" aria-labelledby="mj-privacy-durees-title">
-     <span class="mj-privacy-n">05 / COMBIEN DE TEMPS ?</span>
+     <span class="mj-privacy-n">COMBIEN DE TEMPS ?</span>
      <h2 id="mj-privacy-durees-title">DURÉES DE CONSERVATION</h2>
      <p>Voici les durées <strong>retenues par l'éditeur</strong> pour les données de la communauté. Les nettoyages automatiques concernés sont programmés chaque jour ; les demandes individuelles d'effacement sont traitées séparément.</p>
      <div class="mj-privacy-table-wrap">
@@ -100,7 +93,7 @@ export function privacyMarkup(){
     </section>
 
     <section class="mj-privacy-section" id="mj-privacy-droits" aria-labelledby="mj-privacy-droits-title">
-     <span class="mj-privacy-n">06 / C'EST TON CHOIX</span>
+     <span class="mj-privacy-n">C'EST TON CHOIX</span>
      <h2 id="mj-privacy-droits-title">TES DROITS SUR TES DONNÉES</h2>
      <p>Selon ta situation et les conditions prévues par le RGPD, tu peux demander l'accès à tes données, leur correction, leur effacement ou leur limitation, t'opposer à certains traitements, et demander la portabilité lorsqu'elle est applicable. Tu peux notamment t'opposer aux traitements fondés sur l'intérêt légitime pour des raisons tenant à ta situation particulière. Lorsque le consentement est utilisé, tu peux le retirer à tout moment, sans effet rétroactif.</p>
      <p>Tu peux modifier les informations et réglages publics de ton profil dans <a href="#/profil">Mon profil</a>. La rubrique permet aussi de demander la suppression du compte QG. Cette suppression ne touche pas ton compte Twitch.</p>
@@ -114,7 +107,7 @@ export function privacyMarkup(){
     </section>
 
     <section class="mj-privacy-section" id="mj-privacy-stockage" aria-labelledby="mj-privacy-stockage-title">
-     <span class="mj-privacy-n">07 / SUR TON NAVIGATEUR</span>
+     <span class="mj-privacy-n">SUR TON NAVIGATEUR</span>
      <h2 id="mj-privacy-stockage-title">STOCKAGE LOCAL &amp; SÉCURITÉ</h2>
      <p>Le site utilise le stockage du navigateur pour les fonctionnalités demandées :
      </p><ul class="mj-privacy-points">
