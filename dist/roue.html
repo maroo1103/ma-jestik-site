@@ -9,8 +9,8 @@
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="Ma_JesTik · Le QG">
   <meta property="og:url" content="https://ma-jestik.fr/roue.html">
-  <meta property="og:title" content="La roue | Ma_JesTik">
-  <meta property="og:description" content="Un tirage, une décision ! Lance la roue Ma_JesTik et laisse le hasard décider.">
+  <meta property="og:title" content="Roue aléatoire gratuite et personnalisable | Ma_JesTik">
+  <meta property="og:description" content="Laisse la roue décider pour toi ! Crée ta roue de tirage au sort avec tes propres choix et images, gratuitement et sans inscription.">
   <meta property="og:image" content="https://ma-jestik.fr/og/roue.png?v=20261109-roue2">
   <meta property="og:image:secure_url" content="https://ma-jestik.fr/og/roue.png?v=20261109-roue2">
   <meta property="og:image:type" content="image/png">
@@ -18,12 +18,12 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="La roue Ma_JesTik : fond graphite, or champagne et roue violette.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="La roue | Ma_JesTik">
-  <meta name="twitter:description" content="Un tirage, une décision ! Lance la roue Ma_JesTik et laisse le hasard décider.">
+  <meta name="twitter:title" content="Roue aléatoire gratuite et personnalisable | Ma_JesTik">
+  <meta name="twitter:description" content="Laisse la roue décider pour toi ! Crée ta roue de tirage au sort avec tes propres choix et images, gratuitement et sans inscription.">
   <meta name="twitter:image" content="https://ma-jestik.fr/og/roue.png?v=20261109-roue2">
   <!-- Fin aperçu partage -->
-  <meta name="description" content="Laisse le hasard décider avec la roue Ma_JesTik. Jeux et défis personnalisables par tous, sans inscription.">
-  <title>La roue · Ma_JesTik</title>
+  <meta name="description" content="Laisse la roue décider pour toi ! Crée ta roue de tirage au sort avec tes propres choix et images, gratuitement et sans inscription.">
+  <title>Roue aléatoire gratuite et personnalisable | Ma_JesTik</title>
   <!-- Identite visuelle de l application Ma_JesTik (Windows, Android, iOS, navigateur) -->
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32.png?v=20261108-mj1">
   <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png?v=20261108-mj1">
@@ -36,6 +36,17 @@
   <link rel="stylesheet" href="map.css?v=20261105-zoom2">
   <link rel="stylesheet" href="theme-wheel-graphite.css?v=20261108-mobile-polish1">
   <link rel="stylesheet" href="wheel-multijeux.css?v=20261111-logo-static1">
+  <style>
+    .wheel-guide{margin:26px 0 30px;padding:clamp(18px,2.5vw,30px);background:var(--surface);border:1px solid var(--line);border-radius:12px}
+    .wheel-guide h2{font:700 clamp(26px,3vw,36px)/1.15 var(--heading);color:var(--text);margin:0 0 12px}
+    .wheel-guide p:not(.eyebrow),.wheel-guide li{font-size:15px;line-height:1.6;color:var(--muted)}
+    .wheel-guide p:not(.eyebrow){margin:10px 0}
+    .wheel-guide ol{padding-left:22px;margin:14px 0}
+    .wheel-guide li{padding-left:3px;margin:6px 0}
+    .wheel-guide li::marker,.wheel-guide strong{color:var(--gold);font-weight:600}
+    body.stream .wheel-guide{display:none!important}
+    @media(max-width:760px){.wheel-guide{margin:24px 0}.wheel-guide p:not(.eyebrow),.wheel-guide li{font-size:14px}}
+  </style>
 </head>
 <body>
   <div class="ambient" aria-hidden="true"></div>
@@ -60,10 +71,10 @@
     </button>
   </aside>
   <main>
-    <section class="intro"><div><p class="eyebrow"><span></span> LA ROUE <i> / </i> <strong id="wheelGameLabel">FORTNITE × ONE PIECE</strong></p><h1>LA <em>ROUE</em></h1><p class="intro-copy">Laisse le hasard décider. Un tirage, une décision !</p></div><div class="chapter"><span id="wheelChapterTitle">FORTNITE · ONE PIECE</span><strong><span id="wheelChapterCount">12</span> <small>choix</small></strong><span class="tiny" id="wheelChapterFoot">CARTE VÉRIFIÉE · 05.11.2026</span></div></section>
+    <section class="intro"><div><p class="eyebrow"><span></span> LA ROUE <i> / </i> <strong id="wheelGameLabel">FORTNITE × ONE PIECE</strong></p><h1>LA <em>ROUE</em></h1><p class="intro-copy">Ta roue de décision gratuite et personnalisable. Laisse le hasard décider !</p></div><div class="chapter"><span id="wheelChapterTitle">FORTNITE · ONE PIECE</span><strong><span id="wheelChapterCount">12</span> <small>choix</small></strong><span class="tiny" id="wheelChapterFoot">CARTE VÉRIFIÉE · 05.11.2026</span></div></section>
     <section class="wheel-library-panel" aria-label="Mes roues personnalisées">
-      <div class="wheel-library-heading"><div><p class="eyebrow">UNE ROUE POUR CHAQUE JEU</p><h2>TA ROUE, TES RÈGLES.</h2>
-        <p>Les modèles officiels sont protégés. Duplique une roue pour personnaliser ses lieux et ses images.</p></div></div>
+      <div class="wheel-library-heading"><div><p class="eyebrow">UNE ROUE POUR CHAQUE ENVIE</p><h2>TA ROUE, TES RÈGLES.</h2>
+        <p>Crée ta propre roue ou duplique un modèle de jeu pour personnaliser ses choix et ses images. Les modèles d’origine sont protégés.</p></div></div>
       <div class="wheel-library-controls">
         <label for="wheelPreset" class="sr-only">Choisir une roue enregistrée</label>
         <select id="wheelPreset" aria-label="Choisir une roue enregistrée"><option>Fortnite · One Piece · Modèle</option></select>
@@ -103,6 +114,17 @@
         <textarea id="wheelBulkNames" rows="6" placeholder="Nouveau lieu 1&#10;Nouveau lieu 2&#10;Nouveau lieu 3"></textarea>
         <button id="wheelBulkReplace" type="button">Remplacer la liste</button></details>
       <p class="image-help">Tes images restent sur cet appareil. Pour préserver tes réglages, exporte une copie avant de remplacer des choix.</p><div id="poiGrid" class="poi-grid"></div><p id="selectionMessage" class="selection-message" role="status"></p><p id="imageNotice" class="image-notice" role="status"></p></section>
+    <section class="wheel-guide" aria-labelledby="wheelGuideTitle">
+      <p class="eyebrow">LE HASARD À TON SERVICE</p>
+      <h2 id="wheelGuideTitle">Comment utiliser la roue de décision ?</h2>
+      <p>Tu hésites entre plusieurs options ? La roue Ma_JesTik est un outil de tirage au sort en ligne, gratuit et sans inscription. Utilise-la pour choisir un jeu vidéo, un défi, un lieu où atterrir sur Fortnite ou Warzone, un repas ou une activité.</p>
+      <ol>
+        <li><strong>Crée ta roue :</strong> clique sur « Nouvelle roue » ou duplique un modèle existant.</li>
+        <li><strong>Personnalise tes choix :</strong> ajoute tes idées, modifie leurs noms et leurs images, puis sélectionne les options à inclure dans le tirage.</li>
+        <li><strong>Lance la roue :</strong> découvre un résultat aléatoire parmi les choix sélectionnés.</li>
+      </ol>
+      <p>Tes roues et images sont conservées dans ton navigateur. Utilise l’export et l’import pour sauvegarder ou transférer tes roues personnalisées.</p>
+    </section>
     <footer><p>UN OUTIL DE <strong>MA_JESTIK</strong><span>✦</span> LAISSE LE HASARD DÉCIDER.</p><button id="sourcesButton">Lieux & illustrations </button></footer>
   </main>
   <div class="sr-only" id="announcement" aria-live="polite" aria-atomic="true"></div>
