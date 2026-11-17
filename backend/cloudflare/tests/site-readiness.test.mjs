@@ -26,14 +26,26 @@ test('Métadonnées multijeux et informations d’activité cohérentes',()=>{
  assert.match(html,/purges D1 sous garde-fous Cloudflare/);
  assert.doesNotMatch(html,/aucun effacement automatique/);
 });
-test('Indexation préparée, sans ouverture anticipée',()=>{
+test('Indexation publique et sitemap canonique après ouverture',()=>{
  const robots=read('robots.txt');
  const sitemap=read('sitemap.xml');
  assert.match(robots,/User-agent: \*/);
- assert.match(robots,/Disallow: \//);
+ assert.match(robots,/^Allow: \/$/m);
+ assert.doesNotMatch(robots,/^Disallow:\s*\/$/m);
  assert.match(robots,/Sitemap: https:\/\/ma-jestik.fr\/sitemap.xml/);
  assert.match(sitemap,/<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/);
  for(const p of ['https://ma-jestik.fr/','https://ma-jestik.fr/qg/','https://ma-jestik.fr/roue.html'])
    assert.ok(sitemap.includes('<loc>'+p+'</loc>'),p);
  assert.doesNotMatch(sitemap,/#\//);
+});
+
+test('OVH reste le déploiement automatique et redirige www, Pages reste manuel',()=>{
+ const ovh=readFileSync(path.resolve(dist,'../.github/workflows/deployer-ovh.yml'),'utf8');
+ const pages=readFileSync(path.resolve(dist,'../.github/workflows/publier-roue.yml'),'utf8');
+ assert.match(ovh,/^  push:/m);
+ assert.ok(ovh.includes('RewriteEngine On'));
+ assert.ok(ovh.includes(String.raw`RewriteCond %{HTTP_HOST} ^www\.ma-jestik\.fr$ [NC]`));
+ assert.ok(ovh.includes('RewriteRule ^ https://ma-jestik.fr%{REQUEST_URI} [R=301,L,NE]'));
+ assert.match(pages,/^  workflow_dispatch:/m);
+ assert.doesNotMatch(pages,/^  push:/m);
 });

@@ -1,6 +1,5 @@
-# Ma_JesTik : site accessible en bêta, lancement officiel après validations.
-# Cette consigne limite l'exploration ; elle ne remplace ni une authentification
-# ni une protection des informations personnelles.
+# Site public Ma_JesTik — ouverture du référencement.
+# Les règles robots ne remplacent jamais les contrôles d'accès aux données.
 User-agent: *
-Disallow: /
+Allow: /
 Sitemap: https://ma-jestik.fr/sitemap.xml

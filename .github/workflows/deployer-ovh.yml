@@ -173,10 +173,15 @@ jobs:
         run: python scripts/prepare-deployment.py dist
 
 
-      - name: Configurer le type MIME JavaScript des modules sur OVH
+      - name: Configurer le domaine canonique et le type MIME JavaScript sur OVH
         shell: bash
         run: |
-          printf '%s\n' 'AddType text/javascript .mjs' > dist/.htaccess
+          printf '%s\n' \
+            'AddType text/javascript .mjs' \
+            'RewriteEngine On' \
+            'RewriteCond %{HTTP_HOST} ^www\.ma-jestik\.fr$ [NC]' \
+            'RewriteRule ^ https://ma-jestik.fr%{REQUEST_URI} [R=301,L,NE]' \
+            > dist/.htaccess
 
       - name: Adapter les modules JavaScript à l'hébergement OVH
         shell: bash
