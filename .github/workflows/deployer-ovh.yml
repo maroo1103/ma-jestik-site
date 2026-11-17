@@ -172,6 +172,9 @@ jobs:
         shell: bash
         run: python scripts/prepare-deployment.py dist
 
+      - name: Préparer les URL publiques et le sitemap SEO
+        run: node scripts/generate-seo-pages.mjs dist
+
 
       - name: Configurer le domaine canonique et le type MIME JavaScript sur OVH
         shell: bash

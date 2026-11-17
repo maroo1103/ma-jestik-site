@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ma-jestik.fr/</loc></url>
-  <url><loc>https://ma-jestik.fr/qg/</loc></url>
   <url><loc>https://ma-jestik.fr/roue.html</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/defis.html</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/killathon.html</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/tribunal.html</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/classement.html</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/recompenses-mensuelles.html</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/boutique.html</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/setup.html</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/apropos.html</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/aide.html</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/contact.html</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/mentions-legales.html</loc></url>
+  <url><loc>https://ma-jestik.fr/qg/confidentialite.html</loc></url>
 </urlset>

@@ -34,7 +34,7 @@ test('Indexation publique et sitemap canonique après ouverture',()=>{
  assert.doesNotMatch(robots,/^Disallow:\s*\/$/m);
  assert.match(robots,/Sitemap: https:\/\/ma-jestik.fr\/sitemap.xml/);
  assert.match(sitemap,/<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/);
- for(const p of ['https://ma-jestik.fr/','https://ma-jestik.fr/qg/','https://ma-jestik.fr/roue.html'])
+ for(const p of ['https://ma-jestik.fr/qg/','https://ma-jestik.fr/roue.html'])
    assert.ok(sitemap.includes('<loc>'+p+'</loc>'),p);
  assert.doesNotMatch(sitemap,/#\//);
 });

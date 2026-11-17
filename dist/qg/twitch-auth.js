@@ -1,3 +1,4 @@
+import {oauthReturnRoute} from './seo-routes.mjs?v=20261117-seo1';
 /* Ma_JesTik · OAuth Twitch : session d'onglet revalidée après F5.
    Le jeton reste dans sessionStorage (jamais localStorage).
    Les écritures sont vérifiées côté Cloudflare Worker. */
@@ -124,7 +125,7 @@ async function check(token){
 function login(){
   const bytes=crypto.getRandomValues(new Uint8Array(24));
   const state=Array.from(bytes,v=>v.toString(16).padStart(2,'0')).join('');
-  const pending=JSON.stringify({state,route:goodRoute(location.hash),time:Date.now()});
+  const pending=JSON.stringify({state,route:goodRoute(oauthReturnRoute(location.pathname,location.hash)),time:Date.now()});
   // sessionStorage pour l'onglet courant ; localStorage seulement pour
   // rapprocher un éventuel retour dans un nouvel onglet du même navigateur.
   // Si aucun des deux n'est disponible, on ne démarre pas OAuth.

@@ -171,6 +171,9 @@ jobs:
         shell: bash
         run: python scripts/prepare-deployment.py dist
 
+      - name: Préparer les URL publiques et le sitemap SEO
+        run: node scripts/generate-seo-pages.mjs dist
+
       - name: Configurer GitHub Pages
         uses: actions/configure-pages@v5
 

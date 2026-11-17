@@ -1,3 +1,4 @@
+import {SEO_PAGES,routeFromLocation,routeHref,canonicalPath,navigationTarget} from './seo-routes.mjs?v=20261117-seo1';
 import {challengesMarkup,mountChallenges} from './defis.js?v=20261112-verdansk-challenges1';
 import {mountActivityStrip,unmountActivityStrip} from './activity-strip.js?v=20261111-multigame1';
 import {mountTwitchAuth} from './twitch-auth.js';
@@ -367,7 +368,36 @@ function closeMobile(){
  $('sidebarShade').hidden=true;
  $('menuMobile').setAttribute('aria-expanded','false');
 }
+let lastRouteKey='';
+function currentPage(){
+ const raw=routeFromLocation(location.pathname,location.hash);
+ return raw==='partenaires'?'apropos':Object.prototype.hasOwnProperty.call(pages,raw)?raw:'accueil';
+}
+function linkPublicRoutes(){
+ document.querySelectorAll('a[href^="#/"]').forEach(a=>{
+  const page=a.getAttribute('href').slice(2);
+  if(!Object.prototype.hasOwnProperty.call(pages,page)||page.includes('?'))return;
+  a.dataset.qgRoute=page;
+  a.setAttribute('href',routeHref(page));
+ });
+}
+function updatePageSEO(page){
+ const info=SEO_PAGES[page];
+ document.title=info?.[0]||(page==='roue'?'Roue aléatoire gratuite et personnalisable | Ma_JesTik':names[page]+' · Ma_JesTik');
+ const meta=document.querySelector('meta[name="description"]');
+ if(meta)meta.content=info?.[1]|| (page==='roue'?'Crée ta roue de tirage au sort avec tes propres choix et images, gratuitement et sans inscription.':'Le QG communautaire Ma_JesTik.');
+ const canonical=document.querySelector('link[rel="canonical"]');
+ if(canonical)canonical.href='https://ma-jestik.fr'+canonicalPath(page);
+ let robots=document.querySelector('meta[name="robots"]');
+ if(!robots){robots=document.createElement('meta');robots.name='robots';document.head.append(robots);}
+ robots.content=info?.[4]===false||page==='profil'||page==='membre'?'noindex,follow':'index,follow';
+}
 function route(){
+ const page=currentPage();
+ const next=navigationTarget(page,location.hash,location.search);
+ if(next!==location.pathname+location.search+location.hash)history.replaceState(null,'',next);
+ if(next===lastRouteKey)return;
+ lastRouteKey=next;
  closeMemberPreview();
  unmountMonthlyMissions();
  unmountBoutique();
@@ -375,14 +405,13 @@ function route(){
  unmountTribunal();
  unmountPublicTribunal();
  if(rankingTimer){clearInterval(rankingTimer);rankingTimer=null;}
- const raw=decodeURIComponent(location.hash.replace(/^#\/?/,'').split('?')[0]);
- const page=Object.prototype.hasOwnProperty.call(pages,raw)?raw:'accueil';
  if(wheelObserver){wheelObserver.disconnect();wheelObserver=null;}
  if(setupObserver){setupObserver.disconnect();setupObserver=null;}
  root.innerHTML=pages[page]();
  document.body.classList.toggle('qg-home-active',page==='accueil');
  document.body.classList.toggle('qg-shop-active',page==='boutique');
- document.title=(page==='accueil'?'Le QG communautaire':names[page])+' · Ma_JesTik';
+ updatePageSEO(page);
+ linkPublicRoutes();
  document.querySelectorAll('[data-page]').forEach(a=>{let active=a.dataset.page===page;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
  const group=groups[page];
  document.querySelectorAll('[data-toggle]').forEach(button=>{
@@ -416,6 +445,16 @@ function route(){
 }
 // Les liens de partage possèdent des métadonnées propres, sans fragment #.
 document.addEventListener('click',e=>{
+ const link=e.target.closest('a[data-qg-route]');
+ if(link&&!e.defaultPrevented&&e.button===0&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey&&!e.altKey&&(!link.target||link.target==='_self')){
+  const page=link.dataset.qgRoute;
+  if(Object.prototype.hasOwnProperty.call(pages,page)){
+   e.preventDefault();
+   if(page!==currentPage()||location.hash.includes('?'))location.hash='#/'+page;
+   closeMobile();
+   return;
+  }
+ }
  const jump=e.target.closest('[data-scroll]');
  if(jump){const id=jump.dataset.scroll;document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});return;}
  if(!e.target.closest('.site-navigation'))document.querySelectorAll('[data-toggle]').forEach(b=>b.setAttribute('aria-expanded','false'));
@@ -433,6 +472,7 @@ $('menuMobile').addEventListener('click',()=>{
 $('sidebarShade').addEventListener('click',closeMobile);
 window.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('[data-toggle]').forEach(b=>b.setAttribute('aria-expanded','false'));closeMobile();}});
 window.addEventListener('hashchange',route);
+window.addEventListener('popstate',route);
 // La déconnexion Twitch doit aussi retirer immédiatement le profil privé affiché.
 window.addEventListener('qg:twitch-session',()=>{
  const view=document.getElementById('mjProfileRoot');
@@ -440,10 +480,10 @@ window.addEventListener('qg:twitch-session',()=>{
  if(view&&!view.querySelector('.mp-loading'))void mountProfile();
 });
 window.addEventListener('focus',()=>{
- if(location.hash.startsWith('#/classement')&&votesEnabled)void mountRankings();
+ if(currentPage()==='classement'&&votesEnabled)void mountRankings();
 });
 document.addEventListener('visibilitychange',()=>{
- if(document.visibilityState==='visible'&&location.hash.startsWith('#/classement')&&votesEnabled)void mountRankings();
+ if(document.visibilityState==='visible'&&currentPage()==='classement'&&votesEnabled)void mountRankings();
 });
 mountTwitchAuth(); // Le module nettoie immédiatement une URL de retour OAuth.
 route();
