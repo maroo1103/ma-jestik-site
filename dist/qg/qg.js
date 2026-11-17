@@ -393,12 +393,12 @@ function updatePageSEO(page){
  robots.content=info?.[4]===false||page==='profil'||page==='membre'?'noindex,follow':'index,follow';
 }
 function route(){
+ closeMemberPreview();
  const page=currentPage();
  const next=navigationTarget(page,location.hash,location.search);
  if(next!==location.pathname+location.search+location.hash)history.replaceState(null,'',next);
  if(next===lastRouteKey)return;
  lastRouteKey=next;
- closeMemberPreview();
  unmountMonthlyMissions();
  unmountBoutique();
  unmountActivityStrip();
