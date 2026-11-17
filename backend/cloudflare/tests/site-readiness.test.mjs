@@ -49,3 +49,12 @@ test('OVH reste le déploiement automatique et redirige www, Pages reste manuel'
  assert.match(pages,/^  workflow_dispatch:/m);
  assert.doesNotMatch(pages,/^  push:/m);
 });
+
+test('Accueil : redirection HTTP permanente vers le QG sans fragments',()=>{
+ const root=read('index.html');
+ const ovh=readFileSync(path.resolve(dist,'../.github/workflows/deployer-ovh.yml'),'utf8');
+ assert.match(root,/<link rel="canonical" href="https:\/\/ma-jestik.fr\/qg\/">/);
+ assert.match(root,/<meta http-equiv="refresh" content="0;url=\/qg\/">/);
+ assert.doesNotMatch(root,/#\/accueil|location\.replace/);
+ assert.ok(ovh.includes(String.raw`RewriteRule ^(index\.html)?$ https://ma-jestik.fr/qg/ [R=301,L,NE]`));
+});

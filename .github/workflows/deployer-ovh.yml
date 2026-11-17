@@ -182,6 +182,7 @@ jobs:
           printf '%s\n' \
             'AddType text/javascript .mjs' \
             'RewriteEngine On' \
+            'RewriteRule ^(index\.html)?$ https://ma-jestik.fr/qg/ [R=301,L,NE]' \
             'RewriteCond %{HTTP_HOST} ^www\.ma-jestik\.fr$ [NC]' \
             'RewriteRule ^ https://ma-jestik.fr%{REQUEST_URI} [R=301,L,NE]' \
             > dist/.htaccess
