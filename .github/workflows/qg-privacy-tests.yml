@@ -2,7 +2,7 @@ name: Vérifications RGPD QG (sans données réelles)
 
 on:
   push:
-    branches: [main]
+    branches: [main, seo-pages-indexation]
     paths:
       - 'backend/cloudflare/src/worker.js'
       - 'backend/cloudflare/tribunal-worker.js'
@@ -10,6 +10,9 @@ on:
       - 'dist/qg/tribunal-public.js'
       - 'dist/qg/tribunal.js'
       - 'dist/qg/qg.js'
+      - 'dist/qg/seo-routes.mjs'
+      - 'scripts/generate-seo-pages.mjs'
+      - 'scripts/test-seo-browser.cjs'
       - 'dist/qg/defis.js'
       - 'dist/qg/votes.js'
       - 'dist/qg/challenge-proposals.js'
@@ -55,7 +58,7 @@ permissions:
 jobs:
   tests-privacy:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Lire le dépôt
         uses: actions/checkout@v4
@@ -94,3 +97,14 @@ jobs:
           node --check dist/qg/contact.js
       - name: Tester en SQLite isolé (aucun accès à D1 de production)
         run: node --experimental-sqlite --test backend/cloudflare/tests/*.test.mjs
+
+      - name: Préparer le navigateur pour la recette SEO isolée
+        if: github.ref == 'refs/heads/seo-pages-indexation'
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Vérifier les routes du QG dans Chromium sans API de production
+        if: github.ref == 'refs/heads/seo-pages-indexation'
+        run: |
+          node scripts/generate-seo-pages.mjs dist
+          node scripts/test-seo-browser.cjs
